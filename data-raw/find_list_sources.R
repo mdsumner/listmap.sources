@@ -28,6 +28,7 @@ writeLines(vsizips, "data-raw/list.sources.txt")
   d2 <- d2 |> distinct()
 
 arrow::write_parquet(d2, "data-raw/listmap-sources-vsi.parquet")
+readr::write_csv(d2, "data-raw/listmap-sources-vsi.csv")
 #}
 
 
