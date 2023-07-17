@@ -3,9 +3,9 @@ on:
   schedule:
     - cron: '*/30 00-01 * * *'
   push:
-    branches: [main, master]
+    branches: [main]
   pull_request:
-    branches: [main, master]
+    branches: [main]
 
 name: refresh-data
 
@@ -29,7 +29,7 @@ jobs:
         run: brew install xquartz --cask
 
       - name: Install packages
-        run: Rscript -e 'install.packages(c("tidyverse", "here"))'
+        run: Rscript -e 'install.packages(c("tidyverse", "here", "arrow", "vapour", ))'
 
       - name: Get data
         run: Rscript -e 'source(here::here("data-raw", "find_list_sources.R"), echo = TRUE)'
