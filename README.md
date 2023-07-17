@@ -13,11 +13,11 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 
 print(Sys.time())
-#> [1] "2023-07-17 06:42:08 UTC"
+#> [1] "2023-07-17 07:45:55 UTC"
 
 print(file.info("data-raw/list.sources.txt")[c("size", "mtime")])
 #>                             size               mtime
-#> data-raw/list.sources.txt 180086 2023-07-17 06:07:11
+#> data-raw/list.sources.txt 152053 2023-07-17 07:11:49
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`?
