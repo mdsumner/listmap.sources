@@ -1,7 +1,7 @@
 
 on:
   schedule:
-    - cron: '*/30 00-01 * * *'
+    - cron: '0 0 */5 * *'
   push:
     branches: [main]
   pull_request:
@@ -29,7 +29,10 @@ jobs:
         run: brew install xquartz --cask
 
       - name: Install packages
-        run: Rscript -e 'install.packages(c("tidyverse", "here", "arrow", "vapour", "furrr"))'
+        run: Rscript -e 'install.packages(c("pak"))'
+
+      - name: Install packages
+        run: Rscript -e 'pak::pak(c("dplyr", "tibble", "tidyr", "rmarkdown", "here", "arrow", "vapour", "furrr", "purrr"))'
 
       - name: Get data
         run: Rscript -e 'source(here::here("data-raw", "find_list_sources.R"), echo = TRUE)'

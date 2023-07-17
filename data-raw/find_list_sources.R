@@ -13,7 +13,7 @@ writeLines(zips, "data-raw/list.sources.txt")
   f <- purrr::safely(vapour::vapour_vsi_list)
   library(furrr)
   plan(multicore)
-  l <- furrr::future_map(vsizips, f)
+  l <- furrr::future_map(vsizips, f, seed = NULL)
   plan(sequential)
   bad <- unlist(lapply(l, \(.x) is.null(.x$result)))
   ##none
@@ -33,7 +33,7 @@ writeLines(zips, "data-raw/list.sources.txt")
   d2 <- d2 |> distinct()
 
 arrow::write_parquet(d2, "data-raw/listmap-sources-vsi.parquet")
-readr::write_csv(d2, "data-raw/listmap-sources-vsi.csv")
+write.csv(d2, "data-raw/listmap-sources-vsi.csv", row.names = FALSE)
 #}
 
 
