@@ -6,7 +6,7 @@ tx <- readLines(u)
 zips <- file.path(u, gsub("\"$", "", gsub("href=\"", "", stringr::str_extract(grep("zip", tx, value = TRUE), "href=\".*zip\""))))
 vsizips <- file.path("/vsizip//vsicurl", zips)
 
-writeLines(vsizips, "data-raw/list.sources.txt")
+writeLines(zips, "data-raw/list.sources.txt")
 
 
 #if (FALSE) {
