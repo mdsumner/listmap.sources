@@ -1,0 +1,65 @@
+
+R version 4.3.1 (2023-06-16) -- "Beagle Scouts"
+Copyright (C) 2023 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> u <- "https://listdata.thelist.tas.gov.au/opendata/data"
+> tx <- readLines(u)
+> # length(tx)
+> # grep("zip", tx)
+> 
+> zips <- file.path(u, gsub("\"$", "", gsub("href=\"", "", stringr::str_extract(grep("zip", tx, value = TRUE), "href=\".*zip\""))))
+> vsizips <- file.path("/vsizip//vsicurl", zips)
+> 
+> writeLines(zips, "data-raw/list.sources.txt")
+> 
+> 
+> #if (FALSE) {
+>   f <- purrr::safely(vapour::vapour_vsi_list)
+>   l <- purrr::map(vsizips, f)
+>   bad <- unlist(lapply(l, \(.x) is.null(.x$result)))
+>   ##none
+>   sum(bad)
+[1] 0
+> 
+>   d <- tibble::tibble(url = zips, dsn = vsizips, vsilist = lapply(l, \(.x) .x$result))
+>   dd <- tidyr::unnest(d, "vsilist")
+>   writeLines(sort(unique(tools::file_ext(dd$vsilist))), "data-raw/listmap-sources-unique_file_ext.txt")
+>   d2 <- dd[tools::file_ext(dd$vsilist) %in% c("asc", "tif", "zip", "gdbtable", "csv", "zip"), ]
+> 
+>   ## make sure we don't include every sub gdb/ file (we might want to detect which are raster/vector)
+>   gdb <- tools::file_ext(dirname(d2$vsilist)) == "gdb"
+>   d2$vsilist[gdb] <- dirname(d2$vsilist[gdb])
+>   library(dplyr)
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+>   d2 <- d2 |> distinct()
+> 
+> arrow::write_parquet(d2, "data-raw/listmap-sources-vsi.parquet")
+Error in parquet___WriterProperties___Builder__create() : 
+  Cannot call parquet___WriterProperties___Builder__create(). See https://arrow.apache.org/docs/r/articles/install.html for help installing Arrow C++ libraries. 
+Calls: <Anonymous> ... <Anonymous> -> parquet___WriterProperties___Builder__create
+Execution halted
