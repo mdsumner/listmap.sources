@@ -11,7 +11,10 @@ writeLines(zips, "data-raw/list.sources.txt")
 
 #if (FALSE) {
   f <- purrr::safely(vapour::vapour_vsi_list)
-  l <- purrr::map(vsizips, f)
+  library(furrr)
+  plan(multicore)
+  l <- furrr::future_map(vsizips, f, seed = NULL)
+  plan(sequential)
   bad <- unlist(lapply(l, \(.x) is.null(.x$result)))
   ##none
   sum(bad)
@@ -19,7 +22,9 @@ writeLines(zips, "data-raw/list.sources.txt")
   d <- tibble::tibble(url = zips, dsn = vsizips, vsilist = lapply(l, \(.x) .x$result))
   dd <- tidyr::unnest(d, "vsilist")
   writeLines(sort(unique(tools::file_ext(dd$vsilist))), "data-raw/listmap-sources-unique_file_ext.txt")
-  d2 <- dd[tools::file_ext(dd$vsilist) %in% c("asc", "tif", "zip", "gdbtable", "csv", "zip"), ]
+  arrow::write_parquet(dd, "data-raw/listmap-all-files.parquet")
+
+  d2 <- dd[tools::file_ext(dd$vsilist) %in% c("asc", "tif", "zip", "gdbtable", "csv"), ]
 
   ## make sure we don't include every sub gdb/ file (we might want to detect which are raster/vector)
   gdb <- tools::file_ext(dirname(d2$vsilist)) == "gdb"
@@ -28,7 +33,7 @@ writeLines(zips, "data-raw/list.sources.txt")
   d2 <- d2 |> distinct()
 
 arrow::write_parquet(d2, "data-raw/listmap-sources-vsi.parquet")
-readr::write_csv(d2, "data-raw/listmap-sources-vsi.csv")
+write.csv(d2, "data-raw/listmap-sources-vsi.csv", row.names = FALSE)
 #}
 
 
