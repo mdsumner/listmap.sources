@@ -1519,6 +1519,12 @@ https://listdata.thelist.tas.gov.au/opendata/data/NCH_ES_WHEAT_V2.zip
 https://listdata.thelist.tas.gov.au/opendata/data/NCH_ES_WHEAT_V2_STATEWIDE.zip
 https://listdata.thelist.tas.gov.au/opendata/data/NCH_ES_WIND_EROSION_HAZARD_STATEWIDE.zip
 https://listdata.thelist.tas.gov.au/opendata/data/NCH_LANDFORM_CLASSIFICATION_STATEWIDE.zip
+https://listdata.thelist.tas.gov.au/opendata/data/NCH_ORGANIC_EXTENT_CLASS_STATEWIDE.zip
+https://listdata.thelist.tas.gov.au/opendata/data/NCH_ORGANIC_SOIL_MAP_STATEWIDE.zip
+https://listdata.thelist.tas.gov.au/opendata/data/NCH_OSM_DEPTH_STATEWIDE.zip
+https://listdata.thelist.tas.gov.au/opendata/data/NCH_OSM_DRAINAGE_STATEWIDE.zip
+https://listdata.thelist.tas.gov.au/opendata/data/NCH_OSM_HUMIFICATION_STATEWIDE.zip
+https://listdata.thelist.tas.gov.au/opendata/data/NCH_OSM_PA_SITES_STATEWIDE.zip
 https://listdata.thelist.tas.gov.au/opendata/data/NCH_SOIL_DRAINAGE_STATEWIDE.zip
 https://listdata.thelist.tas.gov.au/opendata/data/NCH_SOIL_PERMEABILITY_STATEWIDE.zip
 https://listdata.thelist.tas.gov.au/opendata/data/NCH_SOIL_PH_TO_15CM_STATEWIDE.zip
