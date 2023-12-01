@@ -658,6 +658,7 @@ https://listdata.thelist.tas.gov.au/opendata/data/LIST_EASEMENTS_WEST_TAMAR.zip
 https://listdata.thelist.tas.gov.au/opendata/data/LIST_ELECTORAL_DIVS_STATEWIDE.zip
 https://listdata.thelist.tas.gov.au/opendata/data/LIST_EPA_REGULATED_SITES_DOCUMENTS_STATEWIDE.zip
 https://listdata.thelist.tas.gov.au/opendata/data/LIST_EPA_REGULATED_SITES_STATEWIDE.zip
+https://listdata.thelist.tas.gov.au/opendata/data/LIST_FIRE_HISTORY_LAST_STATEWIDE.zip
 https://listdata.thelist.tas.gov.au/opendata/data/LIST_FIRE_HISTORY_STATEWIDE.zip
 https://listdata.thelist.tas.gov.au/opendata/data/LIST_FMAC_BOUNDARIES_STATEWIDE.zip
 https://listdata.thelist.tas.gov.au/opendata/data/LIST_FMP_DATA_CSV_STATEWIDE.zip
